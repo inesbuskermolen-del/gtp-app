@@ -12,7 +12,7 @@ import type {
 
 const DEV_TYPE_LABELS: Record<DevelopmentType, string> = {
   residential: 'residential (dwellings)',
-  mixedUse: 'mixed-use (residential + commercial)',
+  mixedUse: 'Mixed-Use',
   commercialOffice: 'commercial office',
   retail: 'retail',
   education: 'education',
