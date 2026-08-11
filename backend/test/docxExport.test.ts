@@ -5,6 +5,21 @@ import { renderGtpDocx } from '../src/docx/fillTemplate.js';
 import { generateGtpContent } from '../src/gtpGenerator.js';
 import { findCouncilForLocation } from '../src/councilLookup.js';
 import type { GeocodeResult, TransportSummary } from '../src/types.js';
+import type { SiteContextImage } from '../src/siteImage.js';
+
+// Standalone 1x1 PNG so these are pure offline unit tests — no network call
+// and no dependency on GTP_MOCK_DATA (renderGtpDocx takes the resolved
+// image as a plain parameter rather than fetching it itself; see
+// server.ts, which calls getSiteContextImage before renderGtpDocx).
+const TEST_SITE_IMAGE: SiteContextImage = {
+  buffer: Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
+    'base64'
+  ),
+  width: 1,
+  height: 1,
+  source: 'test fixture',
+};
 
 function sampleGtp() {
   const geocode: GeocodeResult = {
@@ -39,7 +54,7 @@ function sampleGtp() {
 describe('renderGtpDocx', () => {
   it('renders without throwing and produces a valid docx zip', () => {
     const gtp = sampleGtp();
-    const buffer = renderGtpDocx(gtp);
+    const buffer = renderGtpDocx(gtp, TEST_SITE_IMAGE);
     expect(buffer.length).toBeGreaterThan(10_000);
 
     const zip = new JSZip(buffer);
@@ -49,7 +64,7 @@ describe('renderGtpDocx', () => {
 
   it('leaves no unrendered {tag} placeholders in the output document', () => {
     const gtp = sampleGtp();
-    const buffer = renderGtpDocx(gtp);
+    const buffer = renderGtpDocx(gtp, TEST_SITE_IMAGE);
     const zip = new JSZip(buffer);
     const documentXml = zip.file('word/document.xml')!.asText();
     // Collapse across XML tags the way Word visually renders text, then
@@ -60,7 +75,7 @@ describe('renderGtpDocx', () => {
 
   it('produces well-formed XML for every part in the generated docx', () => {
     const gtp = sampleGtp();
-    const buffer = renderGtpDocx(gtp);
+    const buffer = renderGtpDocx(gtp, TEST_SITE_IMAGE);
     const zip = new JSZip(buffer);
     const xmlParts = Object.keys(zip.files).filter((name) => name.endsWith('.xml') || name.endsWith('.rels'));
     expect(xmlParts.length).toBeGreaterThan(10);
@@ -80,7 +95,7 @@ describe('renderGtpDocx', () => {
     // templates/build-template.py's convert_to_loop_paragraph).
     const gtp = sampleGtp();
     expect(gtp.targets.length).toBeGreaterThan(1);
-    const buffer = renderGtpDocx(gtp);
+    const buffer = renderGtpDocx(gtp, TEST_SITE_IMAGE);
     const zip = new JSZip(buffer);
     const documentXml = zip.file('word/document.xml')!.asText();
     const paragraphTexts = [...documentXml.matchAll(/<w:p[ >][\s\S]*?<\/w:p>/g)].map((m) =>
@@ -97,7 +112,7 @@ describe('renderGtpDocx', () => {
 
   it('includes the draft banner text so exports never look more authoritative than they are', () => {
     const gtp = sampleGtp();
-    const buffer = renderGtpDocx(gtp);
+    const buffer = renderGtpDocx(gtp, TEST_SITE_IMAGE);
     const zip = new JSZip(buffer);
     const documentXml = zip.file('word/document.xml')!.asText();
     expect(documentXml).toContain('AUTOMATICALLY GENERATED DRAFT');

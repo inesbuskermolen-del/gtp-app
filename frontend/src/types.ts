@@ -45,6 +45,8 @@ export interface ActionItem {
 export interface GtpContent {
   meta: {
     address: string;
+    lat: number;
+    lon: number;
     developmentType: DevelopmentType;
     developmentTypeLabel: string;
     scale: string;
@@ -83,8 +85,8 @@ export const ACTION_CATEGORY_LABELS: Record<string, string> = {
 };
 
 export const DEVELOPMENT_TYPE_OPTIONS: { value: DevelopmentType; label: string }[] = [
-  { value: 'residential', label: 'Residential (dwellings)' },
-  { value: 'mixedUse', label: 'Mixed-use (residential + commercial)' },
+  { value: 'residential', label: 'Residential' },
+  { value: 'mixedUse', label: 'Mixed-use' },
   { value: 'commercialOffice', label: 'Commercial office' },
   { value: 'retail', label: 'Retail' },
   { value: 'education', label: 'Education' },

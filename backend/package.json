@@ -18,6 +18,7 @@
     "@turf/turf": "^7.1.0",
     "cors": "^2.8.5",
     "docxtemplater": "^3.50.0",
+    "docxtemplater-image-module-free": "^1.1.1",
     "express": "^4.19.2",
     "pizzip": "^3.1.7"
   },

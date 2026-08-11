@@ -21,6 +21,7 @@ import sys
 from pathlib import Path
 
 import docx
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
 from lxml import etree
 
@@ -295,7 +296,40 @@ def unlink_date_field(root_el, instr_substring, tag):
     return False
 
 
+def unwrap_data_bound_content_controls(root_el):
+    """Word content controls (<w:sdt>) bound to a custom document property
+    (identified by a <w:dataBinding> child of <w:sdtPr>) render as a visible
+    bordered/shaded box in Word, even once the text inside has been swapped
+    for a merge tag — iter_runs() already finds and rewrites that inner
+    text (see its docstring), but leaves the box shell behind. GIW's
+    template uses this pattern for the Project Address / Client fields in
+    several places (cover page, Introduction, Subject Site, Figure 1
+    caption); unwrapping — replacing each <w:sdt> with its <w:sdtContent>'s
+    children in place — removes the box while keeping the (soon to be
+    replaced) text. Deliberately scoped to dataBinding controls only, so it
+    doesn't touch the unrelated REF cross-reference, TOC, or Appendix A
+    survey checkbox content controls elsewhere in the template."""
+    count = 0
+    for sdt in list(root_el.iter(qn("w:sdt"))):
+        sdtPr = sdt.find(qn("w:sdtPr"))
+        if sdtPr is None or sdtPr.find(qn("w:dataBinding")) is None:
+            continue
+        sdtContent = sdt.find(qn("w:sdtContent"))
+        parent = sdt.getparent()
+        if parent is None:
+            continue
+        idx = list(parent).index(sdt)
+        for offset, child in enumerate(list(sdtContent) if sdtContent is not None else []):
+            parent.insert(idx + offset, child)
+        parent.remove(sdt)
+        count += 1
+    return count
+
+
 def process_xml_part(root_el, label, structural=False):
+    n = unwrap_data_bound_content_controls(root_el)
+    if n:
+        print(f"  [{label}] unwrapped {n} data-bound content control(s)")
     for instr_substring, tag in DATE_FIELDS:
         if unlink_date_field(root_el, instr_substring, tag):
             print(f"  [{label}] unlinked DATE field -> {tag}")
@@ -354,6 +388,24 @@ def set_cell_text(cell, new_text):
         extra_p._p.getparent().remove(extra_p._p)
 
 
+def set_paragraph_text(paragraph, new_text):
+    """Same operation as set_cell_text but for a standalone paragraph
+    (not a table cell) — collapses all its runs' text into the first run."""
+    p_el = paragraph._p
+    runs = list(p_el.iter(qn("w:r")))
+    if runs:
+        first_t = runs[0].find(qn("w:t"))
+        if first_t is None:
+            first_t = etree.SubElement(runs[0], qn("w:t"))
+        first_t.text = new_text
+        first_t.set(qn("w:space"), "preserve")
+        for r in runs[1:]:
+            for t in r.findall(qn("w:t")):
+                t.text = ""
+    else:
+        paragraph.add_run(new_text)
+
+
 def delete_row(table, index):
     row = table.rows[index]
     row._tr.getparent().remove(row._tr)
@@ -389,6 +441,56 @@ def process_revision_table(doc):
     text = table.rows[1].cells[1].text
     if "{date}" not in text:
         print(f"  WARNING: revision table date cell is {text!r}, expected '{{date}}'", file=sys.stderr)
+
+
+def process_site_image_placeholder(doc):
+    """The empty paragraph directly above the "Figure 1 - Pre-existing
+    site..." caption is where the source template leaves room for a site
+    photo — pasted in manually by a consultant. Turn it into a conditional
+    image tag so the generator can insert a fetched site-context image
+    there automatically, falling back to a bracketed note (mirroring the
+    hasCarSharePods pattern in insert_car_share_pods_table) when the live
+    fetch failed."""
+    caption_idx = None
+    for i, p in enumerate(doc.paragraphs):
+        if "Figure 1 -" in p.text:
+            caption_idx = i
+            break
+    if caption_idx is None or caption_idx == 0:
+        print("  WARNING: 'Figure 1 -' caption paragraph not found", file=sys.stderr)
+        return
+    placeholder = doc.paragraphs[caption_idx - 1]
+    p_el = placeholder._p
+    old_runs = list(p_el.iter(qn("w:r")))
+    # Preserve whatever run formatting the source template had here.
+    rpr_source = old_runs[0].find(qn("w:rPr")) if old_runs else None
+    for r in old_runs:
+        p_el.remove(r)
+
+    def add_run(text):
+        r = etree.SubElement(p_el, qn("w:r"))
+        if rpr_source is not None:
+            r.append(copy.deepcopy(rpr_source))
+        t = etree.SubElement(r, qn("w:t"))
+        t.text = text
+        t.set(qn("w:space"), "preserve")
+
+    # The raw image tag needs its own isolated <w:t> — docxtemplater's
+    # image module expands it to replace that whole element, which fails
+    # ("Raw tag not in paragraph") if it shares a <w:t>/run with the
+    # surrounding {#hasSiteImage}/{^hasSiteImage} section markers. Those
+    # markers themselves have no such restriction (see the inline
+    # {#hasCarSharePods} usage in insert_car_share_pods_table), so they're
+    # free to share a run with each other and with the fallback note.
+    add_run("{#hasSiteImage}")
+    add_run("{%siteImage}")
+    add_run("{/hasSiteImage}{^hasSiteImage}[Site image unavailable — {siteImageNote}]{/hasSiteImage}")
+
+    # centered:false is used on the JS side (the image module's own centred
+    # mode expands to consume the whole paragraph, which conflicts with the
+    # hasSiteImage markers sharing it) — so centring happens here instead.
+    placeholder.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    print(f"  [paragraph {caption_idx - 1}] site-context image tag inserted before 'Figure 1' caption")
 
 
 def find_paragraph_element(doc, exact_text):
@@ -483,6 +585,9 @@ def main():
     process_action_tables(doc)
     process_transport_table(doc)
     process_revision_table(doc)
+
+    print("\nFigures:")
+    process_site_image_placeholder(doc)
 
     print("\nStructural insertions:")
     insert_draft_banner(doc)

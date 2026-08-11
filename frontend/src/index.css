@@ -9,7 +9,8 @@
   --error: #b00020;
   --warning: #8a5a00;
   color-scheme: light;
-  font-family: 'Calibri', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Roboto', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 300;
   color: var(--text);
   background: var(--bg);
 }
@@ -28,14 +29,19 @@ body {
   padding: 2rem 1.25rem 4rem;
 }
 
+h1,
+h2,
+h3 {
+  font-family: 'Roboto', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 700;
+}
+
 h1 {
-  font-family: 'Cambria', Georgia, serif;
   color: var(--giw-green-dark);
   margin-bottom: 0.25rem;
 }
 
 h2 {
-  font-family: 'Cambria', Georgia, serif;
   color: var(--giw-green-dark);
   border-bottom: 2px solid var(--border);
   padding-bottom: 0.35rem;

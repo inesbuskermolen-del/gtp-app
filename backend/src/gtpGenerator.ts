@@ -22,6 +22,8 @@ const DEV_TYPE_LABELS: Record<DevelopmentType, string> = {
 export interface GtpContent {
   meta: {
     address: string;
+    lat: number;
+    lon: number;
     developmentType: DevelopmentType;
     developmentTypeLabel: string;
     scale: string;
@@ -188,6 +190,8 @@ export function generateGtpContent(
   return {
     meta: {
       address: req.address,
+      lat: geocode.lat,
+      lon: geocode.lon,
       developmentType: req.developmentType,
       developmentTypeLabel: typeLabel,
       scale: req.scale || '',

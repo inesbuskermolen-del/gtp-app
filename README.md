@@ -21,6 +21,7 @@ backend/            Node + TypeScript + Express + Prisma API
   src/
     geocode.ts          Nominatim address -> lat/lon/suburb, cached
     overpass.ts          Overpass API -> nearby transport/cycling infra, cached
+    siteImage.ts          Esri World Imagery -> aerial image centred on the site (Figure 1)
     lga/                 ABS LGA boundary polygons + point-in-polygon council matching
     councilLookup.ts     polygon match -> suburb-list fallback -> generic
     gtpGenerator.ts       combines everything into the GTP content structure
@@ -167,6 +168,21 @@ paragraph/table-index assumptions, not just re-running it blind.
   between "Generate" and "Export .docx" — there's no save-and-resume across
   sessions. The Prisma/SQLite (dev) database that exists is only used to
   cache Nominatim/Overpass responses.
+- **Figure 1's site image is an aerial map, not a site photo.** `siteImage.ts`
+  fetches a keyless Esri World Imagery export centred on the geocoded
+  address (~600m context box) — no site visit occurred, so it's a
+  satellite/aerial substitute, not an actual photo of the site. Esri's
+  World Imagery basemap is intended for light/evaluation use; swap for a
+  licensed imagery provider before any high-volume production use. If the
+  live fetch fails, the export falls back to a bracketed note in place of
+  the image rather than a broken figure.
+- **`docxtemplater-image-module-free` depends on the deprecated, CVE-flagged
+  `xmldom` package** (not the maintained `@xmldom/xmldom` fork). In this
+  app it's only used to parse the template's own internal
+  `[Content_Types].xml` (docx path) — not user-controlled input, and no
+  XML serialization of untrusted data occurs through it — so the known
+  CVEs (XML injection/DoS via serialization) don't apply to how it's used
+  here. Worth revisiting if a better-maintained image module appears.
 
 ## Deployment
 

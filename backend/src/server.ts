@@ -7,6 +7,7 @@ import { getTransportInfrastructure } from './overpass.js';
 import { findCouncilForLocation, listCouncils } from './councilLookup.js';
 import { generateGtpContent, type GtpContent } from './gtpGenerator.js';
 import { renderGtpDocx } from './docx/fillTemplate.js';
+import { getSiteContextImage } from './siteImage.js';
 import { GtpError } from './errors.js';
 import type { GtpRequest } from './types.js';
 
@@ -73,7 +74,8 @@ app.post('/api/generate/docx', async (req, res) => {
     if (!gtp || !gtp.meta) {
       throw new GtpError('MISSING_GTP', 'Request body must include the { gtp } content to export (call /api/generate first).', 400);
     }
-    const buffer = renderGtpDocx(gtp);
+    const siteImage = await getSiteContextImage(gtp.meta.lat, gtp.meta.lon);
+    const buffer = renderGtpDocx(gtp, siteImage);
     const filename = `GTP-Draft-${(gtp.meta.address || 'site').replace(/[^a-z0-9]+/gi, '-').slice(0, 60)}.docx`;
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
