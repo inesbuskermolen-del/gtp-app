@@ -1,0 +1,20 @@
+{
+  "_note": "Representative fixture (approximate real-world layout around Swan St, Richmond) used for GTP_MOCK_DATA=1 demo mode. Not a live Overpass API response — coordinates and facility names are illustrative of what a real query near this address would typically return.",
+  "elements": [
+    { "type": "node", "id": 1, "lat": -37.8235, "lon": 144.9967, "tags": { "railway": "station", "name": "Richmond Railway Station" } },
+    { "type": "node", "id": 2, "lat": -37.8267, "lon": 144.9917, "tags": { "railway": "station", "name": "West Richmond Railway Station" } },
+    { "type": "node", "id": 3, "lat": -37.8220, "lon": 144.9903, "tags": { "railway": "tram_stop", "name": "Swan St / Church St", "ref": "Route 70" } },
+    { "type": "node", "id": 4, "lat": -37.8232, "lon": 144.9930, "tags": { "railway": "tram_stop", "name": "Church St / Swan St", "ref": "Route 78" } },
+    { "type": "node", "id": 5, "lat": -37.8215, "lon": 144.9950, "tags": { "railway": "tram_stop", "name": "Swan St / Punt Rd", "ref": "Route 70" } },
+    { "type": "node", "id": 6, "lat": -37.8225, "lon": 144.9935, "tags": { "highway": "bus_stop", "name": "Swan St near Church St", "ref": "Route 246" } },
+    { "type": "node", "id": 7, "lat": -37.8240, "lon": 144.9955, "tags": { "highway": "bus_stop", "name": "Swan St near Docker St", "ref": "Route 200" } },
+    { "type": "node", "id": 8, "lat": -37.8210, "lon": 144.9920, "tags": { "highway": "bus_stop", "name": "Church St near Bridge Rd", "ref": "Route 246" } },
+    { "type": "node", "id": 9, "lat": -37.8218, "lon": 144.9928, "tags": { "amenity": "car_sharing", "name": "GoGet - Richmond Swan St", "operator": "GoGet" } },
+    { "type": "node", "id": 10, "lat": -37.8242, "lon": 144.9910, "tags": { "amenity": "car_sharing", "name": "Flexicar - Richmond", "operator": "Flexicar" } },
+    { "type": "way", "id": 11, "center": { "lat": -37.8231, "lon": 144.9946 }, "tags": { "highway": "cycleway", "name": "Yarra Trail connector" } },
+    { "type": "way", "id": 12, "center": { "lat": -37.8225, "lon": 144.9960 }, "tags": { "cycleway": "lane", "name": "Swan St bike lane" } },
+    { "type": "way", "id": 13, "center": { "lat": -37.8205, "lon": 144.9915 }, "tags": { "bicycle": "designated", "name": "Church St shared path" } },
+    { "type": "way", "id": 14, "center": { "lat": -37.8250, "lon": 144.9970 }, "tags": { "highway": "cycleway", "name": "Punt Rd cycle lane" } },
+    { "type": "way", "id": 15, "center": { "lat": -37.8195, "lon": 144.9945 }, "tags": { "cycleway": "track", "name": "Yarra River Trail" } }
+  ]
+}

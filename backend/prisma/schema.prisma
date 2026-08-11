@@ -1,0 +1,27 @@
+// Local dev uses SQLite (zero setup). For the Render deployment, change
+// `provider` to "postgresql", point DATABASE_URL at the Render Postgres
+// instance, and run `npm run prisma:migrate` again — see README.
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Caches to respect Nominatim/Overpass usage policy (rate limits, no
+// hammering shared public infra) — see src/geocode.ts / src/overpass.ts.
+model GeocodeCache {
+  id        Int      @id @default(autoincrement())
+  query     String   @unique
+  resultJson String
+  fetchedAt DateTime @default(now())
+}
+
+model OverpassCache {
+  id         Int      @id @default(autoincrement())
+  cacheKey   String   @unique
+  resultJson String
+  fetchedAt  DateTime @default(now())
+}

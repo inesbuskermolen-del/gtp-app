@@ -1,0 +1,177 @@
+{
+  "generatedNote": "Council transport-priority profiles were researched from each council's own published strategy documents (see sourceDocuments) in August 2026. 'detailed' profiles are genuinely sourced; 'generic' councils fall back to the state-wide Victoria Planning Provisions Clause 18 (Transport) themes only. All profiles should be reviewed against the current planning scheme / latest council strategy before a GTP is issued to a client or council.",
+  "actionCategories": ["walking", "cycling", "endOfTripFacilities", "publicTransport", "carpoolingCarShare", "carParking", "travelForWorkAmenities", "management"],
+  "councils": [
+    {
+      "id": "yarra",
+      "name": "City of Yarra",
+      "profileDepth": "detailed",
+      "suburbs": ["Richmond", "Abbotsford", "Collingwood", "Fitzroy", "Fitzroy North", "Clifton Hill", "Cremorne", "Burnley", "North Carlton (part)"],
+      "lgaNames": ["Yarra"],
+      "visionStatement": "By 2050, a robust, highly functional and multi-modal transport network in which it is easier, faster and safer for people of all ages and abilities to get around Yarra (Moving Forward: Yarra's Transport Strategy 2022-32).",
+      "strategicPriorities": [
+        "Mode hierarchy that prioritises walking, cycling and scooters first, then public transport, then private vehicles",
+        "Deliver a connected, low-stress active transport network ('New Deal' walking and cycling programs)",
+        "Reduce traffic speeds and volumes on local streets",
+        "Improve public transport reliability, accessibility and capacity, including dedicated rights-of-way",
+        "Manage on-street parking to discourage car dependency"
+      ],
+      "quantifiedTargets": [
+        "Car trips through/within Yarra forecast to rise 48% on current trends if unaddressed — strategy aims to bend this curve down",
+        "86% community support (survey) for a lot more active and sustainable transport options",
+        "Bring the 39% of the cycling network that is currently non-compliant up to safety standard"
+      ],
+      "sourceDocuments": [
+        {"title": "Moving Forward: Yarra's Transport Strategy 2022-32", "url": "https://www.yarracity.vic.gov.au/sites/default/files/2024-04/yarra_transport_strategy_2022_32.pdf"}
+      ],
+      "actionWeights": {"walking": 1.3, "cycling": 1.6, "endOfTripFacilities": 1.2, "publicTransport": 1.1, "carpoolingCarShare": 1.1, "carParking": 1.3, "travelForWorkAmenities": 1.0, "management": 1.1},
+      "policyNarrative": "Yarra's mode hierarchy places walking, cycling and micromobility above public transport and private cars, and the Council's Transport Strategy 2022-32 explicitly targets reduced car dependency and a step-change in active transport infrastructure. A GTP for this site should foreground secure, high-capacity end-of-trip cycling facilities, direct connections to the local bicycle network, and measures that actively discourage single-occupant car trips (e.g. unbundled/limited car parking, priority car-share bays)."
+    },
+    {
+      "id": "melbourne",
+      "name": "City of Melbourne",
+      "profileDepth": "detailed",
+      "suburbs": ["Melbourne", "Melbourne CBD", "Southbank", "Docklands", "Carlton", "Parkville", "North Melbourne", "West Melbourne", "East Melbourne", "Kensington"],
+      "lgaNames": ["Melbourne"],
+      "visionStatement": "A connected city where people and goods move efficiently through safe, liveable streets that prioritise walking, cycling and public transport over private vehicles (Transport Strategy 2030).",
+      "strategicPriorities": [
+        "Expand unobstructed, tree-lined footpaths and convert 'Little' streets into pedestrian priority zones",
+        "Deliver 50km of protected bicycle lanes over 10 years",
+        "Reduce local road speed limits to 40km/h",
+        "Increase public transport capacity, reliability and signal priority",
+        "Manage kerbside space to prioritise deliveries, servicing and active/public transport over general parking",
+        "Support electric vehicles and zero-emissions transport, and regulate micromobility for public benefit"
+      ],
+      "quantifiedTargets": [
+        "50% reduction in transport fatalities/serious injuries by 2030 (from 231 baseline)",
+        "Halve central-city through-traffic: from 43% to 21% of trips by 2030",
+        "Increase public transport/walking/cycling mode share from 64% to 70% by 2030",
+        "Increase the proportion of women cycling from 24% to 40%"
+      ],
+      "sourceDocuments": [
+        {"title": "City of Melbourne Transport Strategy 2030", "url": "https://www.melbourne.vic.gov.au/transport-strategy-2030"}
+      ],
+      "actionWeights": {"walking": 1.4, "cycling": 1.5, "endOfTripFacilities": 1.3, "publicTransport": 1.3, "carpoolingCarShare": 1.0, "carParking": 1.4, "travelForWorkAmenities": 1.1, "management": 1.1},
+      "policyNarrative": "The City of Melbourne's Transport Strategy 2030 sets an explicit mode-share target (70% of trips by public transport, walking or cycling by 2030) and a halving of central-city through-traffic. A GTP in the municipality should quantify how the development contributes toward these targets, prioritise high-quality end-of-trip facilities given the CBD's already-high public transport and active travel mode share, and align car parking provision with the Strategy's kerb-space and through-traffic reduction goals."
+    },
+    {
+      "id": "port-phillip",
+      "name": "City of Port Phillip",
+      "profileDepth": "detailed",
+      "suburbs": ["St Kilda", "St Kilda East", "St Kilda West", "Albert Park", "Middle Park", "Port Melbourne", "South Melbourne", "Elwood", "Ripponlea (part)", "Balaclava"],
+      "lgaNames": ["Port Phillip"],
+      "visionStatement": "A city that is connected and easy to move around — fitting more people into existing spaces while preserving community values (Move, Connect, Live: Integrated Transport Strategy 2018-28).",
+      "strategicPriorities": [
+        "Safe, connected and convenient active transport choices",
+        "Public transport choices that make it easy to move and connect",
+        "Manage shared, limited on-street parking collaboratively across users",
+        "Support new transport options and technology"
+      ],
+      "quantifiedTargets": [
+        "No fixed mode-share targets published; strategy is framework-based with a 2024 mid-cycle review completed"
+      ],
+      "sourceDocuments": [
+        {"title": "Move, Connect, Live: Integrated Transport Strategy 2018-28", "url": "https://www.portphillip.vic.gov.au/about-the-council/strategies-policies-and-plans/move-connect-live-integrated-transport-strategy/"}
+      ],
+      "actionWeights": {"walking": 1.2, "cycling": 1.3, "endOfTripFacilities": 1.2, "publicTransport": 1.2, "carpoolingCarShare": 1.2, "carParking": 1.3, "travelForWorkAmenities": 1.0, "management": 1.0},
+      "policyNarrative": "Port Phillip's Move, Connect, Live strategy is framed around fitting a growing population into a constrained street network, so on-street parking pressure and car-share/carpooling provision are a particular local sensitivity. A GTP here should give weight to car-share bay provision, resident parking permit interactions, and safe, connected active transport links given the coastal/foreshore trip generators nearby."
+    },
+    {
+      "id": "stonnington",
+      "name": "City of Stonnington",
+      "profileDepth": "detailed",
+      "suburbs": ["Prahran", "South Yarra", "Toorak", "Armadale", "Malvern", "Malvern East", "Windsor", "Glen Iris (part)", "Kooyong"],
+      "lgaNames": ["Stonnington"],
+      "visionStatement": "A shift from planning for vehicles to planning for people, recognising diverse travel needs across the community (draft Transport Strategy 2040).",
+      "strategicPriorities": [
+        "Road safety — reduce crashes and improve safety for all travellers",
+        "Sustainable transport — increase walking, wheeling, riding and public transport use",
+        "Fair, consistent and transparent parking management"
+      ],
+      "quantifiedTargets": [
+        "Zero fatal and serious injury crashes on Council-managed roads by 2040",
+        "50% of trips made by walking, wheeling or riding by 2040",
+        "85% resident satisfaction with transport options",
+        "Retain roughly 1 in 7 parking spaces available at peak times in shopping centres"
+      ],
+      "sourceDocuments": [
+        {"title": "Draft Transport Strategy 2040, Connect Stonnington", "url": "https://connectstonnington.vic.gov.au/transportstrategy"}
+      ],
+      "actionWeights": {"walking": 1.4, "cycling": 1.3, "endOfTripFacilities": 1.1, "publicTransport": 1.2, "carpoolingCarShare": 1.0, "carParking": 1.3, "travelForWorkAmenities": 1.0, "management": 1.1},
+      "policyNarrative": "Stonnington's draft Transport Strategy 2040 targets 50% of trips by walking, wheeling or riding and zero serious-injury crashes, with lower local street speeds (≤40km/h) as a key lever. A GTP here should emphasise pedestrian safety and amenity (crossings, footpath quality) alongside cycling, and should note the strategy is still in draft/consultation — confirm final adopted targets before relying on the numbers above."
+    },
+    {
+      "id": "boroondara",
+      "name": "City of Boroondara",
+      "profileDepth": "detailed",
+      "suburbs": ["Camberwell", "Hawthorn", "Hawthorn East", "Kew", "Kew East", "Balwyn", "Balwyn North", "Canterbury", "Surrey Hills", "Ashburton", "Glen Iris (part)"],
+      "lgaNames": ["Boroondara"],
+      "visionStatement": "Safe, sustainable and connected transport, with a strong focus on reducing emissions from Council operations and the community (Climate Action Plan, Theme 4: Transport).",
+      "strategicPriorities": [
+        "Reduce vehicle numbers and accelerate transition to electric/low-emission Council fleet",
+        "Expand cycling and walking networks — separated paths, improved crossings, links to transport hubs",
+        "Roll out EV and e-bike charging infrastructure",
+        "Support flexible/remote work to reduce commuter vehicle trips",
+        "Develop new Integrated Transport, Bicycle and Public Transport strategies (in progress)"
+      ],
+      "quantifiedTargets": [
+        "No numeric mode-share or trip-reduction targets published as at this profile's research date — directional actions only"
+      ],
+      "sourceDocuments": [
+        {"title": "Boroondara Climate Action Plan – Theme 4: Transport", "url": "https://www.boroondara.vic.gov.au/climate-action-plan/climate-action-plan/theme-4-transport"},
+        {"title": "Boroondara Bicycle Strategy 2022", "url": "https://www.boroondara.vic.gov.au/recreation-arts/cycling-and-walking/boroondara-bicycle-strategy-2022"}
+      ],
+      "actionWeights": {"walking": 1.2, "cycling": 1.4, "endOfTripFacilities": 1.2, "publicTransport": 1.1, "carpoolingCarShare": 1.0, "carParking": 1.1, "travelForWorkAmenities": 1.2, "management": 1.2},
+      "policyNarrative": "Boroondara's Climate Action Plan and 2022 Bicycle Strategy put strong emphasis on separated cycling infrastructure, EV/e-bike charging, and flexible work to cut commuter trips. A GTP here should feature EV charging provision prominently and connect the site to the expanding separated bike path network, while noting Boroondara's new Integrated Transport/Public Transport strategies are still in development at the time of writing."
+    },
+    {
+      "id": "merri-bek",
+      "name": "Merri-bek City Council",
+      "profileDepth": "detailed",
+      "suburbs": ["Brunswick", "Brunswick East", "Brunswick West", "Coburg", "Coburg North", "Pascoe Vale", "Pascoe Vale South", "Fawkner", "Glenroy", "Hadfield", "Oak Park"],
+      "lgaNames": ["Merri-bek"],
+      "visionStatement": "Mode shift away from private car dependency toward sustainable transport, underpinned by the Moreland (now Merri-bek) Integrated Transport Strategy 2019 and Zero Carbon Merri-bek Climate Emergency Action Plan.",
+      "strategicPriorities": [
+        "Prioritise sustainable modes over private cars in the Integrated Transport Strategy",
+        "Expand parking restrictions in activity centres and remove minimum parking requirements for new development",
+        "Advocate for improved public transport frequency and reliability",
+        "School-based walking/cycling/scooting behaviour-change programs",
+        "Expand public EV charging and transition Council fleet to zero emissions"
+      ],
+      "quantifiedTargets": [
+        "5km of new shared path construction (Council target)",
+        "Average Council light-vehicle fleet emissions below 100g/km CO2-e",
+        "Significant decrease in residents driving to work as sole drivers (directional, not numeric)",
+        "Electric vehicle ownership rate substantially above the Melbourne average (directional, not numeric)"
+      ],
+      "sourceDocuments": [
+        {"title": "Moreland Integrated Transport Strategy 2019", "url": "https://www.merri-bek.vic.gov.au/globalassets/key-docs/policy-strategy-plan/mits-2019.pdf"},
+        {"title": "Zero Carbon Merri-bek – Climate Emergency Action Plan 2020/21–24/25", "url": "https://www.merri-bek.vic.gov.au/globalassets/key-docs/policy-strategy-plan/zero-carbon-merri-bek---climate-emergency-action-plan-2020-21---2024-25---updated-october-2022.pdf"}
+      ],
+      "actionWeights": {"walking": 1.2, "cycling": 1.3, "endOfTripFacilities": 1.1, "publicTransport": 1.2, "carpoolingCarShare": 1.1, "carParking": 1.4, "travelForWorkAmenities": 1.0, "management": 1.1},
+      "policyNarrative": "Merri-bek has removed minimum parking requirements in activity centres and actively restricts on-street parking as a mode-shift lever, and its Climate Emergency Action Plan pushes EV charging and fleet transition. A GTP here should treat car parking minimisation and EV charging provision as high-priority items, and connect to the Council's shared path expansion program."
+    },
+    {
+      "id": "generic",
+      "name": "Council not yet profiled in detail",
+      "profileDepth": "generic",
+      "suburbs": [],
+      "lgaNames": [],
+      "visionStatement": "A safe, integrated and sustainable transport system that reduces reliance on private motor vehicles and promotes walking, cycling and public transport (Victoria Planning Provisions, Clause 18 – Transport, applied statewide).",
+      "strategicPriorities": [
+        "Integrate public transport with walking and cycling networks",
+        "Provide end-of-trip facilities for pedestrians and cyclists",
+        "Separate cyclists from motor vehicle traffic and provide direct, practical cycling routes",
+        "Support metro-style rail, tram/light rail extensions, and management of road space including transit lanes and interchanges"
+      ],
+      "quantifiedTargets": [
+        "No council-specific targets on file — use general industry-benchmark ranges and flag them clearly as indicative"
+      ],
+      "sourceDocuments": [
+        {"title": "Victoria Planning Provisions – Clause 18 (Transport)", "url": "https://planning-schemes.app.planning.vic.gov.au/Victoria%20Planning%20Provisions/ordinance/18.02-2S"}
+      ],
+      "actionWeights": {"walking": 1.0, "cycling": 1.0, "endOfTripFacilities": 1.0, "publicTransport": 1.0, "carpoolingCarShare": 1.0, "carParking": 1.0, "travelForWorkAmenities": 1.0, "management": 1.0},
+      "policyNarrative": "This council does not yet have a detailed, sourced transport-priority profile in this tool. The GTP below is drafted against the state-wide Victoria Planning Provisions Clause 18 (Transport) themes only. Before issuing, research this council's specific transport strategy / Local Planning Policy Framework and add a profile to data/councils.json so future GTPs in this LGA are properly tuned."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: gtp-backend
+    runtime: node
+    plan: starter
+    rootDir: backend
+    buildCommand: npm install && npm run prisma:generate && npm run build
+    startCommand: npx prisma migrate deploy && npm start
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: GTP_MOCK_DATA
+        value: 0
+      - key: CORS_ORIGIN
+        sync: false # set to the deployed GitHub Pages origin, e.g. https://giw-org.github.io
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gtp-db
+          property: connectionString
+
+databases:
+  - name: gtp-db
+    plan: starter
+    databaseName: gtp

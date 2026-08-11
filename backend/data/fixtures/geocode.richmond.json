@@ -1,0 +1,11 @@
+{
+  "lat": -37.8228,
+  "lon": 144.9944,
+  "displayName": "1 Swan Street, Richmond, City of Yarra, Victoria, 3121, Australia",
+  "suburb": "Richmond",
+  "postcode": "3121",
+  "state": "Victoria",
+  "raw": {
+    "note": "Recorded/representative fixture used for GTP_MOCK_DATA=1 demo mode — coordinates are approximate and for demonstration only, not a live Nominatim response."
+  }
+}

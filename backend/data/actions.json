@@ -1,0 +1,60 @@
+{
+  "source": "Base action library adapted from GIW Environmental Solutions' Green Travel Plan template (DateGIWREFAddressGTP2022A.docx).",
+  "actions": [
+    { "category": "walking", "text": "Produce a walking map showing safe and pleasurable walking routes to and from the building with times to local facilities such as shops and bus stops (e.g. Walkscore)", "weight": 1 },
+    { "category": "walking", "text": "Open up short cuts for pedestrian access across/along the site", "weight": 1 },
+    { "category": "walking", "text": "Review condition of existing footpaths onsite; provide additional or upgraded footpaths to meet occupant needs", "weight": 2 },
+    { "category": "walking", "text": "Negotiate with the local council for footpath improvements", "weight": 1 },
+    { "category": "walking", "text": "Ensure pedestrian safety and access is not compromised during construction", "weight": 2 },
+    { "category": "walking", "text": "Take part in 'National Walk to Work Day' to encourage residents/staff to walk to work", "weight": 1 },
+    { "category": "walking", "text": "Run 'Travel Smart Get to Work Days' encouraging walking, cycling and public transport", "weight": 1 },
+
+    { "category": "cycling", "text": "Provide a map to residents/occupants outlining locations of on-site bicycle parking", "weight": 1 },
+    { "category": "cycling", "text": "Provide sufficient secure bicycle parking to meet peak needs — accessible, well-lit and secure", "weight": 3 },
+    { "category": "cycling", "text": "Provide visitor bicycle parking", "weight": 1 },
+    { "category": "cycling", "text": "Ensure bike parking is clearly visible or well signposted", "weight": 1 },
+    { "category": "cycling", "text": "Review and improve interconnection with existing on-site/adjacent cycle routes", "weight": 2 },
+    { "category": "cycling", "text": "Upgrade or provide new on-site cycle routes", "weight": 1 },
+    { "category": "cycling", "text": "Ensure cycle routes are not compromised during construction", "weight": 1 },
+    { "category": "cycling", "text": "Develop a 'bike buddy' scheme for inexperienced cyclists", "weight": 1 },
+    { "category": "cycling", "text": "Supply a puncture-repair/tool kit, bike pump, spare lock and lights for shared use", "weight": 1 },
+    { "category": "cycling", "text": "Provide a pool bicycle (and e-bike where feasible) for short trips during the day", "weight": 1 },
+    { "category": "cycling", "text": "Arrange servicing/discount incentives with a local bicycle retailer", "weight": 1 },
+    { "category": "cycling", "text": "Establish an internal Bicycle Users Group (BUG)", "weight": 1 },
+    { "category": "cycling", "text": "Participate in annual events such as 'Ride to Work Day'", "weight": 1 },
+    { "category": "cycling", "text": "Provide e-bike/e-scooter charging points at bicycle parking areas", "weight": 2 },
+
+    { "category": "endOfTripFacilities", "text": "Provide showers and changing rooms sized to peak demand", "weight": 2 },
+    { "category": "endOfTripFacilities", "text": "Provide lockers for a change of clothes, located near changing rooms", "weight": 2 },
+    { "category": "endOfTripFacilities", "text": "Provide a drying room/facility for wet weather gear", "weight": 1 },
+
+    { "category": "publicTransport", "text": "Produce a map showing public transport routes to the site", "weight": 1 },
+    { "category": "publicTransport", "text": "Provide a shuttle bus linking the site to the nearest train station for construction workers and/or building users", "weight": 1 },
+    { "category": "publicTransport", "text": "Provide train/tram/bus timetables for local services in household or tenant welcome packs", "weight": 2 },
+    { "category": "publicTransport", "text": "Provide a myki card with pre-loaded 'myki money' in welcome packs for new residents/tenants", "weight": 1 },
+    { "category": "publicTransport", "text": "Provide an interest-free loan or subsidy toward an annual myki pass", "weight": 1 },
+    { "category": "publicTransport", "text": "Provide discounted travel cards", "weight": 1 },
+    { "category": "publicTransport", "text": "Encourage public transport use for business travel", "weight": 1 },
+
+    { "category": "carpoolingCarShare", "text": "Allocate priority parking spaces for car poolers", "weight": 1 },
+    { "category": "carpoolingCarShare", "text": "Apply for a privately-operated car-share pod on-site or in close proximity", "weight": 3 },
+    { "category": "carpoolingCarShare", "text": "Set up a carpooling database/app for residents or tenants", "weight": 1 },
+
+    { "category": "carParking", "text": "Identify priority car park users (e.g. people with disabilities, shift workers)", "weight": 1 },
+    { "category": "carParking", "text": "Provide electric vehicle charging points", "weight": 2 },
+    { "category": "carParking", "text": "Provide dedicated car-share spaces", "weight": 2 },
+    { "category": "carParking", "text": "Provide spaces for mopeds/motorbikes", "weight": 1 },
+    { "category": "carParking", "text": "Introduce an exclusion zone restricting parking permits for staff/residents living in close proximity to the site", "weight": 1 },
+    { "category": "carParking", "text": "Minimise/unbundle car parking supply relative to the planning scheme maximum, consistent with council parking-reform policy", "weight": 2 },
+
+    { "category": "travelForWorkAmenities", "text": "Install teleconference facilities to replace some regular in-person meetings", "weight": 1 },
+    { "category": "travelForWorkAmenities", "text": "Provide on-site amenities such as a café or crèche to reduce off-site trip generation", "weight": 1 },
+    { "category": "travelForWorkAmenities", "text": "Support flexible/remote work arrangements to reduce peak commuter trips", "weight": 1 },
+
+    { "category": "management", "text": "Commit to developing an Operational Green Travel Plan for occupants and staff using the building", "weight": 2 },
+    { "category": "management", "text": "Monitor and report — conduct surveys and keep records of uptake of GTP initiatives", "weight": 2 },
+    { "category": "management", "text": "Review parking-permit policy for new staff/residents", "weight": 1 },
+    { "category": "management", "text": "Offer incentives (e.g. cash-out) for staff/residents who give up a car parking space", "weight": 1 },
+    { "category": "management", "text": "Appoint a Green Travel Plan / Sustainable Transport Coordinator responsible for implementation", "weight": 1 }
+  ]
+}
