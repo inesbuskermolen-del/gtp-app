@@ -170,7 +170,7 @@ paragraph/table-index assumptions, not just re-running it blind.
   cache Nominatim/Overpass responses.
 - **Figure 1's site image is an aerial map, not a site photo.** `siteImage.ts`
   fetches a keyless Esri World Imagery export centred on the geocoded
-  address (~600m context box) — no site visit occurred, so it's a
+  address (~400m context box) — no site visit occurred, so it's a
   satellite/aerial substitute, not an actual photo of the site. Esri's
   World Imagery basemap is intended for light/evaluation use; swap for a
   licensed imagery provider before any high-volume production use. If the

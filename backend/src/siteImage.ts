@@ -19,7 +19,7 @@ const IMAGE_HEIGHT_PX = 600;
 // Tighter than the 1200m transport-catchment radius (src/overpass.ts) —
 // this figure is meant to show the site and its immediate surrounds, not
 // the whole GTP catchment.
-const HALF_EXTENT_M = 300;
+const HALF_EXTENT_M = 200;
 
 const METRES_PER_DEGREE_LAT = 111_320;
 
