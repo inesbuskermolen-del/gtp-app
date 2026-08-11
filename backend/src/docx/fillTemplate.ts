@@ -13,8 +13,8 @@ import { GtpError } from '../errors.js';
 // 1x1 transparent PNG — placeholder so the {%siteImage} tag always has a
 // buffer to hand the image module even when the live fetch failed; the
 // accompanying {#hasSiteImage} block (see toTemplateData) hides it and
-// shows a "confirm manually" note instead, mirroring the transport._error
-// pattern in transportNarrative.
+// shows a "confirm manually" note instead, mirroring the honest-failure
+// pattern used for transport._error (see overpass.ts).
 const BLANK_PNG = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
   'base64'
@@ -73,7 +73,6 @@ export function toTemplateData(gtp: GtpContent, siteImage: SiteContextImage): Re
     summary: gtp.summary,
     introduction: gtp.introduction,
     subjectSiteNarrative: gtp.subjectSiteNarrative,
-    transportNarrative: gtp.transportNarrative,
     policyNarrative: gtp.policyNarrative,
     gtpIntro: gtp.gtpIntro,
     monitoringAndReporting: gtp.monitoringAndReporting,

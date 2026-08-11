@@ -65,7 +65,6 @@ export interface GtpContent {
   introduction: string;
   gtpIntro: string;
   subjectSiteNarrative: string;
-  transportNarrative: string;
   transport: TransportSummary;
   policyNarrative: string;
   targets: TargetItem[];

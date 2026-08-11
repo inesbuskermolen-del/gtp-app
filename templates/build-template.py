@@ -58,7 +58,6 @@ WHOLE_PARAGRAPH_REPLACEMENTS = [
     ("adopt the strategies that promote the usage of public transportation", "{summary}"),
     ("has been engaged by", "{introduction}"),
     ("has an approximate surface area of XXm2", "{subjectSiteNarrative}"),
-    ("connects it to the major train lines", "{transportNarrative}"),
     ("Infrastructure Victoria is targeting a zero-emission vehicle infrastructure", "{policyNarrative}"),
     ("is to implement the GTP provided by GIW", "{gtpIntro}"),
     ("requires monitoring and annual review and reporting", "{monitoringAndReporting}"),
@@ -86,6 +85,10 @@ PARAGRAPHS_TO_DELETE = [
     # runs first and already collapsed that paragraph to "{policyNarrative}".
     "Infrastructure Victoria ",
     "Parliament of Victoria - Report on Climate Change",
+    # Redundant prose restating exactly what the Existing Transport
+    # Infrastructure table below it already shows — dropped per explicit
+    # request rather than replaced with {transportNarrative}.
+    "connects it to the major train lines",
     "Planning Scheme",  # 3rd "Sources of Information" bullet, now says "{councilName} Planning Scheme"
     "Use of public transport by at least xx",
     "Use of sustainable modes of transport such as walking, cycling, and shared vehicles by at least xx",

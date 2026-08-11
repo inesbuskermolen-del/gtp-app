@@ -42,7 +42,6 @@ export interface GtpContent {
   introduction: string;
   gtpIntro: string;
   subjectSiteNarrative: string;
-  transportNarrative: string;
   transport: TransportSummary;
   policyNarrative: string;
   targets: TargetItem[];
@@ -92,22 +91,6 @@ function joinStops(items: TransportSummary['train'], radiusM: number, label: str
 function joinDistances(items: TransportSummary['train']): string {
   if (!items.length) return '-';
   return items.map((s) => `${s.distanceLabel}, ~${s.walkMinutes} min`).join('\n');
-}
-
-function buildTransportNarrative(transport: TransportSummary): string {
-  const nearest = (arr: TransportSummary['train'], label: string) =>
-    arr.length
-      ? arr.map((s) => `${s.name} (${s.distanceLabel}, ~${s.walkMinutes} min walk)`).join('; ')
-      : `No ${label} identified within the ${transport.searchRadiusM}m search radius — confirm manually.`;
-
-  const errorNote = transport._error ? `\n\nNote: ${transport._error}` : '';
-
-  return (
-    `Public Transport: ${nearest(transport.train, 'train station')}. Tram: ${nearest(transport.tram, 'tram stop')}. ` +
-    `Bus: ${nearest(transport.bus, 'bus stop')}.\n\nCar Share: ${nearest(transport.carShare, 'car share pod')}.\n\n` +
-    `Cycling Infrastructure: ${transport.cyclingInfraCount} mapped cycling-related way(s) within ${transport.searchRadiusM}m ` +
-    `(OpenStreetMap).${errorNote}`
-  );
 }
 
 function buildPolicyNarrative(council: CouncilMatch): string {
@@ -220,7 +203,6 @@ export function generateGtpContent(
       'The development is to implement the GTP provided by GIW, which sets measurable targets and actions to be ' +
       'incorporated at design and operational stages, with monitoring and reporting frameworks to track impact.',
     subjectSiteNarrative: buildSubjectSiteNarrative(req, geocode, typeLabel),
-    transportNarrative: buildTransportNarrative(transport),
     transport,
     policyNarrative: buildPolicyNarrative(councilMatch),
     targets: buildTargets(councilMatch),
