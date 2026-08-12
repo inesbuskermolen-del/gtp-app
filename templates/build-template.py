@@ -452,7 +452,7 @@ def process_site_image_placeholder(doc):
     photo — pasted in manually by a consultant. Turn it into a conditional
     image tag so the generator can insert a fetched site-context image
     there automatically, falling back to a bracketed note (mirroring the
-    hasCarSharePods pattern in insert_car_share_pods_table) when the live
+    hasCarSharePods pattern in process_car_share_table) when the live
     fetch failed."""
     caption_idx = None
     for i, p in enumerate(doc.paragraphs):
@@ -483,7 +483,7 @@ def process_site_image_placeholder(doc):
     # ("Raw tag not in paragraph") if it shares a <w:t>/run with the
     # surrounding {#hasSiteImage}/{^hasSiteImage} section markers. Those
     # markers themselves have no such restriction (see the inline
-    # {#hasCarSharePods} usage in insert_car_share_pods_table), so they're
+    # {#hasCarSharePods} usage in process_car_share_table), so they're
     # free to share a run with each other and with the fallback note.
     add_run("{#hasSiteImage}")
     add_run("{%siteImage}")
@@ -543,35 +543,49 @@ def insert_draft_banner(doc):
     print("  inserted draft banner table before 'Summary'")
 
 
-def insert_car_share_pods_table(doc):
-    """New loop-driven table for live nearby car-share pod data, inserted
-    right after the branded Flexicar/GoGet/GreenShareCar operator table
-    (table 6) and before "Taxi Services" — keeps the branded operator
-    callouts from the original template intact while adding the more
-    useful live-data table."""
-    anchor = find_paragraph_element(doc, "Taxi Services")
-    heading = doc.add_paragraph("Nearby Car Share Pods (live data)", style="Heading 3")
-    intro = doc.add_paragraph(
-        "{#hasCarSharePods}The following car-share pods were identified within the search radius via "
-        "OpenStreetMap:{/hasCarSharePods}{^hasCarSharePods}No car-share pods were identified within the "
-        "search radius via OpenStreetMap — confirm manually.{/hasCarSharePods}"
-    )
-    table = doc.add_table(rows=2, cols=3)
-    table.style = doc.tables[5].style
-    header_cells = table.rows[0].cells
-    for cell, text in zip(header_cells, ["Name", "Distance", "Walk time"]):
-        set_cell_text(cell, text)
-        for run in cell.paragraphs[0].runs:
-            run.bold = True
+def process_car_share_table(doc):
+    """The template's own "Car Share Provider | Location | Approximate
+    Distance/ Walk Time" table ships with blank example rows for a
+    consultant to fill in by hand. Convert its first data row into a loop
+    bound to the live carSharePods data instead (mirroring
+    process_action_tables' table-loop pattern) and drop the other static
+    blank rows, rather than adding a second, separate table elsewhere —
+    an earlier version of this script did that and it read as duplicated/
+    confusing next to the still-blank original table."""
+    table = None
+    for t in doc.tables:
+        if t.rows and t.rows[0].cells[0].text.strip() == "Car Share Provider":
+            table = t
+            break
+    if table is None:
+        print("  WARNING: 'Car Share Provider' table not found", file=sys.stderr)
+        return
+    if len(table.rows) < 2:
+        print("  WARNING: 'Car Share Provider' table has no data row to convert", file=sys.stderr)
+        return
     row_cells = table.rows[1].cells
-    set_cell_text(row_cells[0], "{#carSharePods}{name}")
-    set_cell_text(row_cells[1], "{distanceLabel}")
-    set_cell_text(row_cells[2], "{walkMinutes} min{/carSharePods}")
+    set_cell_text(row_cells[0], "{#carSharePods}{provider}")
+    set_cell_text(row_cells[1], "{location}")
+    set_cell_text(row_cells[2], "{distanceWalk}{/carSharePods}")
+    for _ in range(len(table.rows) - 2):
+        delete_row(table, 2)
+    print(f"  ['Car Share Provider' table] converted to loop 'carSharePods', {len(table.rows)} rows remain")
 
-    anchor._p.addprevious(heading._p)
-    heading._p.addnext(intro._p)
-    intro._p.addnext(table._tbl)
-    print("  inserted car-share pods loop table before 'Taxi Services'")
+    intro = None
+    for p in doc.paragraphs:
+        if "There are several car share services available" in p.text:
+            intro = p
+            break
+    if intro is None:
+        print("  WARNING: car-share intro paragraph not found", file=sys.stderr)
+        return
+    set_paragraph_text(
+        intro,
+        "{#hasCarSharePods}There are several car share services available at the subject site as shown in "
+        "the table below.{/hasCarSharePods}{^hasCarSharePods}No car-share pods were identified within the "
+        "search radius via OpenStreetMap — confirm manually.{/hasCarSharePods}",
+    )
+    print("  ['Car Share Provider' table] intro paragraph made conditional on hasCarSharePods")
 
 
 def main():
@@ -588,13 +602,13 @@ def main():
     process_action_tables(doc)
     process_transport_table(doc)
     process_revision_table(doc)
+    process_car_share_table(doc)
 
     print("\nFigures:")
     process_site_image_placeholder(doc)
 
     print("\nStructural insertions:")
     insert_draft_banner(doc)
-    insert_car_share_pods_table(doc)
 
     for i, section in enumerate(doc.sections):
         for kind, part in [("header", section.header), ("footer", section.footer),

@@ -88,11 +88,21 @@ export function toTemplateData(gtp: GtpContent, siteImage: SiteContextImage): Re
     busStops: joinStops(gtp.transport.bus, gtp.transport.searchRadiusM, 'bus stop'),
     busDistances: joinDistances(gtp.transport.bus),
     hasCarSharePods: gtp.transport.carShare.length > 0,
-    carSharePods: gtp.transport.carShare.map((c) => ({
-      name: c.name,
-      distanceLabel: c.distanceLabel,
-      walkMinutes: c.walkMinutes,
-    })),
+    carSharePods: gtp.transport.carShare.map((c) => {
+      // OSM car-share nodes are usually tagged operator="GoGet" plus a
+      // name like "GoGet - Richmond Swan St" — split that apart so the
+      // template's Provider/Location columns aren't both just the same
+      // full string. Falls back to the plain name if it doesn't fit that
+      // "{operator} - {location}" shape.
+      const operator = c.tags.operator;
+      const prefix = operator ? `${operator} - ` : null;
+      const location = prefix && c.name.startsWith(prefix) ? c.name.slice(prefix.length) : c.name;
+      return {
+        provider: operator || c.name,
+        location,
+        distanceWalk: `${c.distanceLabel} (~${c.walkMinutes} min walk)`,
+      };
+    }),
   };
 
   for (const [category, tag] of Object.entries(ACTION_CATEGORY_TAGS)) {
